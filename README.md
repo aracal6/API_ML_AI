@@ -45,4 +45,97 @@
 4.
 
 
+## 三、API 产品使用及输出展示
 
+#### 1、API展示说明及输出
+（1）人脸识别--人脸搜索api
+- 接口描述：面对镜头，对比人脸库中N张人脸，进行1：N检索，找出最相似的一张或多张人脸，并返回相似度分数。支持百万级人脸库管理，毫秒级识别响应，可满足身份核验、刷脸通行等应用场景
+- 接口地址：[百度ai人脸搜索api文档](https://ai.baidu.com/ai-doc/FACE/Gk37c1uzc)
+- 请求URL数据格式：向API服务地址使用POST发送请求
+- 请求url：https://aip.baidubce.com/rest/2.0/face/v3/search
+- 输入代码
+```
+# encoding:utf-8
+
+import requests
+
+'''
+人脸搜索
+'''
+
+request_url = "https://aip.baidubce.com/rest/2.0/face/v3/search"
+
+params = "{\"image\":\"027d8308a2ec665acb1bdf63e513bcb9\",\"image_type\":\"FACE_TOKEN\",\"group_id_list\":\"group_repeat,group_233\",\"quality_control\":\"LOW\",\"liveness_control\":\"NORMAL\"}"
+access_token = '24.c2c1012eb8ae7a9379a84df7b6e11c4f.2592000.1579705577.282335-17258797'
+request_url = request_url + "?access_token=" + access_token
+headers = {'content-type': 'application/json'}
+response = requests.post(request_url, data=params, headers=headers)
+if response:
+    print (response.json())
+```
+
+- 输出代码
+```
+  { "face_token": "fid", "user_list": [{"group_id" : "test1","user_id": "u333333","user_info": "Test User","score": 99.3 }]}
+  #输出的结果数值
+  
+```
+
+  - score的值表示用户的匹配得分，数值越高证明匹配成功推荐的阈值是80，用户score输出值达80以上即可通过
+  
+  
+  （2）百度api车牌识别
+  - 文字识别--车牌识别技术
+  - 接口描述：对机动车蓝牌、绿牌、单/双行黄牌的地域编号和车牌号进行识别，并能同时识别图像中的多张车牌。
+  - 接口地址：[百度ai车牌识别api文档](https://ai.baidu.com/ai-doc/OCR/ck3h7y191)
+  - 请求方式：请求URL数据格式：向API服务地址使用POST发送请求
+  - 请求url：https://aip.baidubce.com/rest/2.0/ocr/v1/license_plate
+  - 输入代码
+```
+def get_file_content(filePath):
+    with open(filePath, 'rb') as fp:
+        return fp.read()
+
+
+#获取车牌号信息
+def get_license_plate(path):
+
+    request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/license_plate"
+    
+    f = get_file_content(path)
+    access_token=('24.c2c1012eb8ae7a9379a84df7b6e11c4f.2592000.1579705577.282335-17258797')
+    img = base64.b64encode(f)
+    params = {"custom_lib": False, "image": img}
+    params = urllib.parse.urlencode(params).encode('utf-8')
+    request_url = request_url + "?access_token=" + access_token
+    request = urllib.request.Request(url=request_url, data=params)
+    request.add_header('Content-Type', 'application/x-www-form-urlencoded')
+    response = urllib.request.urlopen(request)
+    content = response.read()
+    if content:
+        license_plates = json.loads(content.decode("utf-8"))
+        strover = '识别结果：'
+        words_result = license_plates['words_result']
+        number = words_result['number']
+        strover += '  车牌号：{} \n '.format(number)
+#        print (content)
+        print (strover)
+        return content
+    else:
+        return ''
+
+image_path='C:\Users\dai\Desktop\车牌.png'
+get_license_plate(image_path)
+```
+
+- 输出代码
+```
+{"errno": 0,"msg": "success","data": {"log_id": "5327722537189137631","words_result": {"color": "green","number": "苏AD12267","probability": [1,0.9999977350235,0.99999630451202,0.99999868869781,0.99998331069946,0.99999988079071,0.9531751871109,0.99922955036163],"vertexes_location": [{"y": 223,"x": 170},{y": 223,"x": 282},{"y": 256,"x": 282},{"y": 256,"x": 170}]}}}
+```
+  
+
+  
+  
+  
+  
+  
