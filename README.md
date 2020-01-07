@@ -213,13 +213,160 @@ image_path='C:\Users\dai\Desktop\车牌.png'
 get_license_plate(image_path)
 ```
 
-- 输出代码
+- 输入代码
 ```
 {"errno": 0,"msg": "success","data": {"log_id": "5327722537189137631","words_result": {"color": "green","number": "京KBT355","probability": [1,0.9999977350235,0.99999630451202,0.99999868869781,0.99998331069946,0.99999988079071,0.9531751871109,0.99922955036163],"vertexes_location": [{"y": 223,"x": 170},{y": 223,"x": 282},{"y": 256,"x": 282},{"y": 256,"x": 170}]}}}
 ```
   
 
+  （4）百度语音合成
+  ```
+# coding=utf-8
+import sys
+import json
+
+IS_PY3 = sys.version_info.major == 3
+if IS_PY3:
+    from urllib.request import urlopen
+    from urllib.request import Request
+    from urllib.error import URLError
+    from urllib.parse import urlencode
+    from urllib.parse import quote_plus
+else:
+    import urllib2
+    from urllib import quote_plus
+    from urllib2 import urlopen
+    from urllib2 import Request
+    from urllib2 import URLError
+    from urllib import urlencode
+
+API_KEY = '4E1BG9lTnlSeIf1NQFlrSq6h'
+SECRET_KEY = '544ca4657ba8002e3dea3ac2f5fdd241'
+
+TEXT = "欢迎使用百度语音合成。"
+
+# 发音人选择, 基础音库：0为度小美，1为度小宇，3为度逍遥，4为度丫丫，
+# 精品音库：5为度小娇，103为度米朵，106为度博文，110为度小童，111为度小萌，默认为度小美 
+PER = 4
+# 语速，取值0-15，默认为5中语速
+SPD = 5
+# 音调，取值0-15，默认为5中语调
+PIT = 5
+# 音量，取值0-9，默认为5中音量
+VOL = 5
+# 下载的文件格式, 3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
+AUE = 3
+
+FORMATS = {3: "mp3", 4: "pcm", 5: "pcm", 6: "wav"}
+FORMAT = FORMATS[AUE]
+
+CUID = "123456PYTHON"
+
+TTS_URL = 'http://tsn.baidu.com/text2audio'
+
+
+class DemoError(Exception):
+    pass
+
+
+"""  TOKEN start """
+
+TOKEN_URL = 'http://openapi.baidu.com/oauth/2.0/token'
+SCOPE = 'audio_tts_post'  # 有此scope表示有tts能力，没有请在网页里勾选
+
+
+def fetch_token():
+    print("fetch token begin")
+    params = {'grant_type': 'client_credentials',
+              'client_id': API_KEY,
+              'client_secret': SECRET_KEY}
+    post_data = urlencode(params)
+    if (IS_PY3):
+        post_data = post_data.encode('utf-8')
+    req = Request(TOKEN_URL, post_data)
+    try:
+        f = urlopen(req, timeout=5)
+        result_str = f.read()
+    except URLError as err:
+        print('token http response http code : ' + str(err.code))
+        result_str = err.read()
+    if (IS_PY3):
+        result_str = result_str.decode()
+
+    print(result_str)
+    result = json.loads(result_str)
+    print(result)
+    if ('access_token' in result.keys() and 'scope' in result.keys()):
+        if not SCOPE in result['scope'].split(' '):
+            raise DemoError('scope is not correct')
+        print('SUCCESS WITH TOKEN: %s ; EXPIRES IN SECONDS: %s' % (result['access_token'], result['expires_in']))
+        return result['access_token']
+    else:
+        raise DemoError('MAYBE API_KEY or SECRET_KEY not correct: access_token or scope not found in token response')
+
+
+"""  TOKEN end """
+
+if __name__ == '__main__':
+    token = fetch_token()
+    tex = quote_plus(TEXT)  # 此处TEXT需要两次urlencode
+    print(tex)
+    params = {'tok': token, 'tex': tex, 'per': PER, 'spd': SPD, 'pit': PIT, 'vol': VOL, 'aue': AUE, 'cuid': CUID,
+              'lan': 'zh', 'ctp': 1}  # lan ctp 固定参数
+
+    data = urlencode(params)
+    print('test on Web Browser' + TTS_URL + '?' + data)
+
+    req = Request(TTS_URL, data.encode('utf-8'))
+    has_error = False
+    try:
+        f = urlopen(req)
+        result_str = f.read()
+
+        headers = dict((name.lower(), value) for name, value in f.headers.items())
+
+        has_error = ('content-type' not in headers.keys() or headers['content-type'].find('audio/') < 0)
+    except  URLError as err:
+        print('asr http response http code : ' + str(err.code))
+        result_str = err.read()
+        has_error = True
+
+    save_file = "error.txt" if has_error else 'result.' + FORMAT
+    with open(save_file, 'wb') as of:
+        of.write(result_str)
+
+    if has_error:
+        if (IS_PY3):
+            result_str = str(result_str, 'utf-8')
+        print("tts api  error:" + result_str)
+
+    print("result saved as :" + save_file)
+```
+
+- 输出代码
+result save as :result.mp3
+
+
+
+
 #### 2.使用比较分析
+|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |
+| --- | --- | --- |
+|   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   |   发布人  |
+|   价格  |   ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |  ![916be857b15a265d2fc43443d9aea7a.png](https://upload-images.jianshu.io/upload_images/9643258-e80395f46ac8ed50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   |   发布人  |
+|   准确率  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   优点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   缺点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+
+
+|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |
+| --- | --- | --- |
+|   链接  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   价格  |     |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   准确率  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   优点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   缺点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+
 
 #### 3.使用后风险报告
   
