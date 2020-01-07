@@ -344,28 +344,29 @@ if __name__ == '__main__':
 ```
 
 - 输出代码
+```
 result save as :result.mp3
-
+```
 
 
 
 #### 2.使用比较分析
 |     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |
 | --- | --- | --- |
-|   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   |   发布人  |
-|   价格  |   ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |  ![916be857b15a265d2fc43443d9aea7a.png](https://upload-images.jianshu.io/upload_images/9643258-e80395f46ac8ed50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   |   发布人  |
-|   准确率  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   优点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   缺点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   | 
+|   价格  |   ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |  ![916be857b15a265d2fc43443d9aea7a.png](https://upload-images.jianshu.io/upload_images/9643258-e80395f46ac8ed50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   |
+|   准确率  |   高达99%以上  |  达到99%的准确率   |
+|   优点  |   提供可视化人脸库管理功能，支持人脸组、用户、人脸维度的增、删、改、查操作 | 支持大角度侧脸、快速移动人脸   |
+|   缺点  |   多人脸检索识别率会下降 | 识别率较低   |
 
-
-|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |
+|     |   百度AI文字识别-身份证识别 |  腾讯云身份证ocr   |
 | --- | --- | --- |
-|   链接  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   价格  |     |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   准确率  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   优点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
-|   缺点  |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |   发布人  |
+|   链接  |   [百度AI文字识别-身份证识别](https://ai.baidu.com/tech/ocr_cards/idcard)  |  [腾讯云身份证ocr](https://ai.qq.com/product/ocr.shtml#identify)   | 
+|   价格  |   ![738be405f853cce589a86bd170d7ab3.png](https://upload-images.jianshu.io/upload_images/9643258-569eecee3c831dff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) | ![8e21b5851a863a5cd1b58ef0b28d30e.png](https://upload-images.jianshu.io/upload_images/9643258-c7aef887103b6cb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |
+|   准确率  |  超过99%   | 中文98%以上，数字99%以上   |
+|   优点  |   高识别率，支持识别各角度身份证照片，对少数民族身份证进行专项优化 | 适应各种实际应用中的异常情况，如光照不均、倾斜、模糊等，具备非常高的复杂环境可用性   |
+|   缺点  |   在复杂的使用环境下识别率下降 | 在复杂的使用环境下识别率下降  |
+
 
 
 #### 3.使用后风险报告
