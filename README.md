@@ -23,7 +23,7 @@
 |   核心价值  |  用户痛点 |
 | --- | --- |
 |  便捷性 |过去用户出入社区门禁需要携带门禁ic卡，会出现忘带、丢失等情况，造成出行不便。过去车辆的出入需要与保安交涉，证明自己的身份才可进入。现在实现自动化车牌检测出入，减少了出入时间上的浪费。 | 
-|  安全性 | 丢失的门禁ic卡。可能会被不法分子拿来谋不法之事。现在实现出入人员的身份验证管理，大大降低了安全隐患。语音合成可以在一定程度上保证女性单独居住时的安全。| 
+|  安全性 | 丢失的门禁ic卡。可能会被不法分子拿来谋不法之事。现在实现出入人员的身份验证管理，大大降低了安全隐患。| 
 
 #### 人工智能概率性与用户痛点
 - 百度ai人脸识别--人脸搜索
@@ -49,7 +49,7 @@
 
 2.小明出门远行，今天开车回家，来到小区门口，正当想和熟悉的保安叔叔打招呼开栏杆进入小区时，车窗还没摇下，栏杆就自动上升允许通过了。开过保安亭时，发现保安叔叔不在，他产生了疑惑。这时他注意到了车栏杆旁的摄像头，意识到早前在易出行app里录入了自己的车牌号码，原来是新装的车牌检测系统自动化检测车辆出入。不禁感叹科技的方便。
 
-3.小红是一位单身的职场女性，今天她像平时一样一个人下班回家。深夜的时候，门口突然想起一阵急促的敲门声，门外一个陌生的声音喊道半夜查水表。这时小红打开手机app，使用语音合成功能，将文案输出，调整语速、性别播放回应门外的陌生人。陌生人听到是男性声音后，找借口离去。
+
 
 
 ## 二、产品设计原型
@@ -84,7 +84,7 @@
 
 #### 4.口头操作说明
 易出行是一款方便居民出入小区，改善社区安全保障问题及提升居民居住安全感的app。
-针对用户只要在app上绑定自己的小区，上传自己的人脸、身份证和车牌号码即可日后一键开小区门禁锁，车辆出入自动识别。最大程度的便捷你的生活。还有一个功能是语音合成，单独居住的女性用户可以将文案转化成男性声音，在线调节语调、语速、性别，提高一个人在家的安全感。
+针对用户只要在app上绑定自己的小区，上传自己的人脸、身份证和车牌号码即可日后一键开小区门禁锁，车辆出入自动识别。最大程度的便捷你的生活。
 针对社区管理，社区管理者可以在app上修改车辆、居民信息。保障信息的录入，可以通过扫描和云数据录入，操作简单便捷。
 
 
@@ -219,142 +219,13 @@ get_license_plate(image_path)
 ```
   
 
-  （4）百度语音合成
-  ```
-# coding=utf-8
-import sys
-import json
-
-IS_PY3 = sys.version_info.major == 3
-if IS_PY3:
-    from urllib.request import urlopen
-    from urllib.request import Request
-    from urllib.error import URLError
-    from urllib.parse import urlencode
-    from urllib.parse import quote_plus
-else:
-    import urllib2
-    from urllib import quote_plus
-    from urllib2 import urlopen
-    from urllib2 import Request
-    from urllib2 import URLError
-    from urllib import urlencode
-
-API_KEY = '4E1BG9lTnlSeIf1NQFlrSq6h'
-SECRET_KEY = '544ca4657ba8002e3dea3ac2f5fdd241'
-
-TEXT = "欢迎使用百度语音合成。"
-
-# 发音人选择, 基础音库：0为度小美，1为度小宇，3为度逍遥，4为度丫丫，
-# 精品音库：5为度小娇，103为度米朵，106为度博文，110为度小童，111为度小萌，默认为度小美 
-PER = 4
-# 语速，取值0-15，默认为5中语速
-SPD = 5
-# 音调，取值0-15，默认为5中语调
-PIT = 5
-# 音量，取值0-9，默认为5中音量
-VOL = 5
-# 下载的文件格式, 3：mp3(default) 4： pcm-16k 5： pcm-8k 6. wav
-AUE = 3
-
-FORMATS = {3: "mp3", 4: "pcm", 5: "pcm", 6: "wav"}
-FORMAT = FORMATS[AUE]
-
-CUID = "123456PYTHON"
-
-TTS_URL = 'http://tsn.baidu.com/text2audio'
-
-
-class DemoError(Exception):
-    pass
-
-
-"""  TOKEN start """
-
-TOKEN_URL = 'http://openapi.baidu.com/oauth/2.0/token'
-SCOPE = 'audio_tts_post'  # 有此scope表示有tts能力，没有请在网页里勾选
-
-
-def fetch_token():
-    print("fetch token begin")
-    params = {'grant_type': 'client_credentials',
-              'client_id': API_KEY,
-              'client_secret': SECRET_KEY}
-    post_data = urlencode(params)
-    if (IS_PY3):
-        post_data = post_data.encode('utf-8')
-    req = Request(TOKEN_URL, post_data)
-    try:
-        f = urlopen(req, timeout=5)
-        result_str = f.read()
-    except URLError as err:
-        print('token http response http code : ' + str(err.code))
-        result_str = err.read()
-    if (IS_PY3):
-        result_str = result_str.decode()
-
-    print(result_str)
-    result = json.loads(result_str)
-    print(result)
-    if ('access_token' in result.keys() and 'scope' in result.keys()):
-        if not SCOPE in result['scope'].split(' '):
-            raise DemoError('scope is not correct')
-        print('SUCCESS WITH TOKEN: %s ; EXPIRES IN SECONDS: %s' % (result['access_token'], result['expires_in']))
-        return result['access_token']
-    else:
-        raise DemoError('MAYBE API_KEY or SECRET_KEY not correct: access_token or scope not found in token response')
-
-
-"""  TOKEN end """
-
-if __name__ == '__main__':
-    token = fetch_token()
-    tex = quote_plus(TEXT)  # 此处TEXT需要两次urlencode
-    print(tex)
-    params = {'tok': token, 'tex': tex, 'per': PER, 'spd': SPD, 'pit': PIT, 'vol': VOL, 'aue': AUE, 'cuid': CUID,
-              'lan': 'zh', 'ctp': 1}  # lan ctp 固定参数
-
-    data = urlencode(params)
-    print('test on Web Browser' + TTS_URL + '?' + data)
-
-    req = Request(TTS_URL, data.encode('utf-8'))
-    has_error = False
-    try:
-        f = urlopen(req)
-        result_str = f.read()
-
-        headers = dict((name.lower(), value) for name, value in f.headers.items())
-
-        has_error = ('content-type' not in headers.keys() or headers['content-type'].find('audio/') < 0)
-    except  URLError as err:
-        print('asr http response http code : ' + str(err.code))
-        result_str = err.read()
-        has_error = True
-
-    save_file = "error.txt" if has_error else 'result.' + FORMAT
-    with open(save_file, 'wb') as of:
-        of.write(result_str)
-
-    if has_error:
-        if (IS_PY3):
-            result_str = str(result_str, 'utf-8')
-        print("tts api  error:" + result_str)
-
-    print("result saved as :" + save_file)
-```
-
-- 输出代码
-```
-result save as :result.mp3
-```
-
-
 
 #### 2.使用比较分析
-|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |
-| --- | --- | --- |
-|   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   | 
-|   价格  |   ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |  ![916be857b15a265d2fc43443d9aea7a.png](https://upload-images.jianshu.io/upload_images/9643258-e80395f46ac8ed50.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   |
+|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |Face++人脸搜索   |
+| --- | --- | --- |--- |
+|   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   | Face++人脸搜索](https://www.faceplusplus.com.cn/)   |
+|   价格  |  ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  | ![ceda60692a418433e352e7e47a61a2f.png](https://upload-images.jianshu.io/upload_images/9643258-dc545f9492e597b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+  |![21aff84f01e0dd3d3f2f9da098bfc61.png](https://upload-images.jianshu.io/upload_images/9643258-6e898c4433fa8049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) |
 |   准确率  |   高达99%以上  |  达到99%的准确率   |
 |   优点  |   提供可视化人脸库管理功能，支持人脸组、用户、人脸维度的增、删、改、查操作 | 支持大角度侧脸、快速移动人脸   |
 |   缺点  |   多人脸检索识别率会下降 | 识别率较低   |
@@ -371,7 +242,13 @@ result save as :result.mp3
 
 #### 3.使用后风险报告
   
-  
-  
+（1）人脸识别-搜索api
+- 价格：百度<face++<
+
+（2）身份证识别
+
+
+（3）车牌识别
+
   
   
