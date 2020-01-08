@@ -221,31 +221,58 @@ get_license_plate(image_path)
 
 
 #### 2.使用比较分析
-|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   |Face++人脸搜索   |
+|     |   百度AI人脸识别-搜索API  |  腾讯云ai人脸识别-搜索   | Face++人脸搜索   |
 | --- | --- | --- |--- |
 |   链接  |   [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)  |  [腾讯云ai人脸识别-搜索](https://ai.qq.com/product/face.shtml#search)   | Face++人脸搜索](https://www.faceplusplus.com.cn/)   |
-|   价格  |  ![8e367b0a355cae964052797a12a935d.png](https://upload-images.jianshu.io/upload_images/9643258-80d80dbf69762dbb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  | ![ceda60692a418433e352e7e47a61a2f.png](https://upload-images.jianshu.io/upload_images/9643258-dc545f9492e597b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-  |![21aff84f01e0dd3d3f2f9da098bfc61.png](https://upload-images.jianshu.io/upload_images/9643258-6e898c4433fa8049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) |
-|   准确率  |   高达99%以上  |  达到99%的准确率   |
-|   优点  |   提供可视化人脸库管理功能，支持人脸组、用户、人脸维度的增、删、改、查操作 | 支持大角度侧脸、快速移动人脸   |
-|   缺点  |   多人脸检索识别率会下降 | 识别率较低   |
+|   价格  |   |   |  |
+|   准确率  |   90%以上  |  80%以上   |  90%以上  |
+|   优点  |   提供可视化人脸库管理功能，支持人脸组、用户、人脸维度的增、删、改、查操作 | 支持大角度侧脸、快速移动人脸   |  数值返回多样化属性分析、还包括皮肤状态  |
+|   缺点  |   多个人脸检索识别率会下降 |  搜索对比识别率较低   |  搜索对比识别率较低   |
 
-|     |   百度AI文字识别-身份证识别 |  腾讯云身份证ocr   |
-| --- | --- | --- |
-|   链接  |   [百度AI文字识别-身份证识别](https://ai.baidu.com/tech/ocr_cards/idcard)  |  [腾讯云身份证ocr](https://ai.qq.com/product/ocr.shtml#identify)   | 
-|   价格  |   ![738be405f853cce589a86bd170d7ab3.png](https://upload-images.jianshu.io/upload_images/9643258-569eecee3c831dff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) | ![8e21b5851a863a5cd1b58ef0b28d30e.png](https://upload-images.jianshu.io/upload_images/9643258-c7aef887103b6cb4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  |
-|   准确率  |  超过99%   | 中文98%以上，数字99%以上   |
-|   优点  |   高识别率，支持识别各角度身份证照片，对少数民族身份证进行专项优化 | 适应各种实际应用中的异常情况，如光照不均、倾斜、模糊等，具备非常高的复杂环境可用性   |
-|   缺点  |   在复杂的使用环境下识别率下降 | 在复杂的使用环境下识别率下降  |
+
+
+
+
+
+
+|     |   百度AI文字识别-身份证识别 |  腾讯云身份证ocr   |  Face++身份证识别 |
+| --- | --- | --- |--- |
+|   链接  |   [百度AI文字识别-身份证识别](https://ai.baidu.com/tech/ocr_cards/idcard)  |  [腾讯云身份证ocr](https://ai.qq.com/product/ocr.shtml#identify)   | [Face++身份证识别](https://www.faceplusplus.com.cn/idcard-recognition/) |
+|   价格  | 每日500免费调用、200元/一万次、0.02元/次 | 120元/1000次 |  0.01元/次、1000元/每月（1QPS）|
+|   准确率  |  超过99%   | 中文98%以上，数字99%以上   |  99%以上  |
+|   优点  |   高识别率，支持识别各角度身份证照片，对少数民族身份证进行专项优化 | 适应各种实际应用中的异常情况，如光照不均、倾斜、模糊等，具备非常高的复杂环境可用性   |           |  翻拍、PS等真实性识别 |
+|   缺点  |   在复杂的使用环境下识别率下降 | 在复杂的使用环境下识别率下降  | 翻拍、PS等真实性识别 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 #### 3.使用后风险报告
   
 （1）人脸识别-搜索api
-- 价格：百度<face++<
+- 价格：百度<face++<腾讯
+- 准确率：根据三家的api使用情况准确率情况，百度与face++的准确率较高，基本能够识别出不同表情下的人脸，但是根据实际使用情况，模糊了照片和光线等，则会出现不同程度的识别错误。
+- 根据实际场景使用的准确度比较，三家的差别并没有特别大，综合价格、准确度决定产品人脸搜索功能使用百度api。
 
 （2）身份证识别
+- 
 
 
 （3）车牌识别
