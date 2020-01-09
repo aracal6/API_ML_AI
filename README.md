@@ -6,15 +6,15 @@
 ## 价值主张设计
 
 #### 加值宣言
-- 随着社会发展，房地产的兴起，必定使得出现老社区缺少管理，无规划的问题。针对这一现象，市面上开始出现智能社区app，帮助老城区规划管理，以最低的成本来改善社区居民的安全出行。针对老社区的停车杂乱无章，人员乱入，治安管理成本高的问题，这类app有人脸识别&身份证识别功能。但针对到居民个人的功能确没有。所有基于现状，该app将采用基本的人脸识别&图像识别门禁功能、车牌检测功能保障基本社区安全出行功能之外，还将采用语音合成功能来为居民的安全出行提供新功能及保障。
+- 随着社会发展，房地产的兴起，新小区的日益增多，老社区渐渐地埋没在人们的视线中，随着社区的设备老化，管理者的投资减少，老社区出现了缺少管理，无规划的问题。针对这一现象，市面上开始出现智能社区app，帮助老城区规划管理，以最低的成本来改善社区居民的安全出行。针对老社区的停车杂乱无章，人员乱入，治安管理成本高的问题，这类app有人脸识别&身份证识别功能。但针对到居民个人的功能确没有。所有基于现状，该app将采用基本的人脸识别&图像识别门禁功能、车牌检测功能保障基本社区安全出行。
 
 - 通过人脸识别功能识别&图像识别功能，方便居民刷脸/身份证出入社区，管理陌生人群进入，达成刷卡管理监控的功能。还能识别陌生人群，危险人群进行预防警报。
-- 车牌识别功能对出入车辆进行管理，对不属于本小区的车辆进行禁入管理。
+- 车牌识别功能对出入车辆进行管理，车辆进出系统录入上传登记，车位实时显示。
 
 
 |   优先级  |  次优先级 |
 | --- | --- |
-|   1.基于百度api人脸识别&图像识别功能，通过人脸识别与身份证证件等对社区出入人员进行监控与管理、实现出入自动化。2.基于百度api车牌识别功能，实现对车辆信息的自动识别，可实现无卡、无人的进出场自动化、规范化管理，有效降低人力成本和通行卡证制作成本，提升管理效率  | 3.基于百度api的语音合成功能，将用户的声音或文案转换成男声播放。  | 
+|   1.基于百度api人脸识别&图像识别功能，通过人脸识别与身份证证件等对社区出入人员进行监控与管理、实现出入自动化。2.基于百度api车牌识别功能，实现对车辆信息的自动识别，可实现无卡、无人的进出场自动化、规范化管理，有效降低人力成本和通行卡证制作成本，提升管理效率  | 3.车牌识别功能，登记进出车辆，实时显示剩余车位  | 
 
 #### 核心价值
 - 本产品着眼于用户的安全居住出行需求，解决老社区停车杂乱无章，人员乱入缺少管制，居住具有安全风险的问题。
@@ -26,9 +26,19 @@
 |  安全性 | 丢失的门禁ic卡。可能会被不法分子拿来谋不法之事。现在实现出入人员的身份验证管理，大大降低了安全隐患。| 
 
 #### 人工智能概率性与用户痛点
-- 百度ai人脸识别--人脸搜索
-- 人脸的姿态角度、遮挡度、清晰度、光照条件，确保输入的图片符合质量标准即可保证高准确度的判断
+- 人脸库管理
+提供可视化人脸库管理功能，支持人脸组、用户、人脸维度的增、删、改、查操作 
 
+- 身份证识别
+提供移动端SDK，使用时能实时检测取景框中是否包含身份证，是否存在模糊、欠/过曝等情况，并提示用户矫正，提高采集质量，提升准确率 
+- 车牌识别
+依托百度优秀的图像处理技术和海量优质数据，支持识别多种常见类型车牌信息，对蓝牌、绿牌、单/双行黄牌识别准确率可达95%以上 
+
+- 人脸识别--人脸搜索
+人脸的姿态角度、遮挡度、清晰度、光照条件，确保输入的图片符合质量标准即可保证高准确度的判断
+万级别人脸库首选识别率高达99%以上，索速度业内领先
+
+###### 但人工智能再出色也会存在偏差情况
 
 ![人脸搜索.png](https://upload-images.jianshu.io/upload_images/9643258-9b208f860f4fe4ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -36,12 +46,16 @@
 
 ![多人识别.png](https://upload-images.jianshu.io/upload_images/9643258-3446623f0725cfb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+###### 为了更好地、更精确地解决用户痛点。针对人工智能概率性，app增加提醒功能，提醒用户使用人脸/身份证/车牌识别功能时，弹窗提示当前环境过于光亮/昏暗/不清晰等影响准确率的条件，提高api识别准确率。
+
+
 
 #### 需求列表与人工智能API加值
 |  用户需求   |   重要性  |    api技术接口 |
 | --- | --- | --- |
 |  用户通过小区门禁进去小区   |   重要  |   人脸识别&图像识别  |
 |  用户驾驶车辆进入小区  |  重要   | 车牌识别    |
+|  外来人员进入小区  |  重要   | 人脸识别&图像识别    |
 
 具体使用场景：
 1.小明下班回家，想通过门禁进入小区，但是忘带了门禁卡，这时注意到小区门口新安装的门禁系统，记起早前在易出行app上录入了自己的人脸信息，打开app一键开门。
@@ -56,25 +70,29 @@
 ## 二、产品设计原型
 
 #### 产品架构图
-![产品架构.png](https://upload-images.jianshu.io/upload_images/9643258-8458786f2c20417b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![aa957429e9e6c1b4b2fb6c832d1341d.png](https://upload-images.jianshu.io/upload_images/9643258-64be60090bcf8922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 1、交互及界面设计
 ##### 手机端
-- 个人中心
+- 注册登录
+![30ae961e69bc0b84487b6dcb3b2c09d.png](https://upload-images.jianshu.io/upload_images/9643258-7749a8872bef7ce9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![个人中心.png](https://upload-images.jianshu.io/upload_images/9643258-cc83e5ef2feb92c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- 个人中心
+![35e8060b086d538870304686890777c.png](https://upload-images.jianshu.io/upload_images/9643258-953267449af25100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 - 功能区
+![84b81a482f9e97b93d09dda2b4f9e80.png](https://upload-images.jianshu.io/upload_images/9643258-f89e9ed5f32328e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![功能区.png](https://upload-images.jianshu.io/upload_images/9643258-b0752a8d5ee1c3a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - 社区管理中心
+![ce29a8ea538a27c67cd34b6f4413c6a.png](https://upload-images.jianshu.io/upload_images/9643258-f4d64617810f9744.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![社区管理中心.png](https://upload-images.jianshu.io/upload_images/9643258-84943200729c2694.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 ##### 终端
 
-![终端.png](https://upload-images.jianshu.io/upload_images/9643258-4af52962114f4c8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![b987946b6d7851330911d6b8c071d59.png](https://upload-images.jianshu.io/upload_images/9643258-3421c4709b4a7f1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 #### 2.信息设计
@@ -351,4 +369,4 @@ get_license_plate(image_path)
 - [百度AI人脸库管理](https://ai.baidu.com/ai-doc/FACE/7k37c1twu)
 - [百度AI人脸识别-搜索API](https://ai.baidu.com/tech/face/search)
 - [百度AI文字识别-身份证识别](https://ai.baidu.com/tech/ocr_cards/idcard) 
-- 百度AI车牌识别](https://ai.baidu.com/tech/ocr_cars/plate)
+- [百度AI车牌识别](https://ai.baidu.com/tech/ocr_cars/plate)
