@@ -75,17 +75,21 @@
 #### 1、交互及界面设计
 ##### 手机端
 - 注册登录
+
 ![30ae961e69bc0b84487b6dcb3b2c09d.png](https://upload-images.jianshu.io/upload_images/9643258-7749a8872bef7ce9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - 个人中心
+
 ![35e8060b086d538870304686890777c.png](https://upload-images.jianshu.io/upload_images/9643258-953267449af25100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 - 功能区
+
 ![84b81a482f9e97b93d09dda2b4f9e80.png](https://upload-images.jianshu.io/upload_images/9643258-f89e9ed5f32328e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 - 社区管理中心
+
 ![ce29a8ea538a27c67cd34b6f4413c6a.png](https://upload-images.jianshu.io/upload_images/9643258-f4d64617810f9744.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -97,9 +101,11 @@
 
 #### 2.信息设计
 - 终端信息返回
+
 ![57a3a5c170c8b9cdcdb1c7bf4a03f96.png](https://upload-images.jianshu.io/upload_images/9643258-4cf8af5ebe546011.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - app端信息返回
+
 ![35e8060b086d538870304686890777c.png](https://upload-images.jianshu.io/upload_images/9643258-12aa76084a3ea995.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
