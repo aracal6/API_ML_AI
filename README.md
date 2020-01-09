@@ -110,8 +110,8 @@
 
 
 #### 3.原型文档
-1.原型html链接：
-2.原型文件下载：
+- 1.原型html链接：http://aracal6.gitee.io/easy-to-travel
+- 2.原型文件下载：https://gitee.com/aracal6/Easy-to-travel
 
 #### 4.口头操作说明
 易出行是一款方便居民出入小区，改善社区安全保障问题及提升居民居住安全感的app。
